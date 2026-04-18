@@ -2,10 +2,10 @@ import { useState } from 'react';
 import type { RecipeData } from '../types/RecipeData';
 
 interface RecipeFormProps {
-  onAddRecipe: (recipe: RecipeData) => void;
+  onAddRecipe: (recipe: Omit<RecipeData, 'id'>) => void;
 }
 
-export default function RecipeForm({ onAddRecipe }: RecipeFormProps ) {
+export default function RecipeForm({ onAddRecipe }: RecipeFormProps) {
   const [recipeName, setRecipeName] = useState<string>('');
   const [ingredients, setIngredients] = useState<string>('');
   const [cookingTime, setCookingTime] = useState<string>('');
@@ -28,7 +28,7 @@ export default function RecipeForm({ onAddRecipe }: RecipeFormProps ) {
     <div>
       <h1>Recipe Form</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="recipeName">Recipe Name:</label>
           <input
             type="text"
@@ -37,7 +37,7 @@ export default function RecipeForm({ onAddRecipe }: RecipeFormProps ) {
             onChange={(e) => setRecipeName(e.target.value)}
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="ingredients">Ingredients:</label>
           <textarea
             id="ingredients"
@@ -45,7 +45,7 @@ export default function RecipeForm({ onAddRecipe }: RecipeFormProps ) {
             onChange={(e) => setIngredients(e.target.value)}
           ></textarea>
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="cookingtime">Cooking Time:</label>
           <input
             type="text"
